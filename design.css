@@ -1,5 +1,8 @@
 
 button {
+    body {
+  font-family: Arial, sans-serif;
+}
     background-color: blue;
     color: red;
     padding: 20px 10px;
