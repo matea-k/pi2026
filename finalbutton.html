@@ -6,13 +6,19 @@
 
 <body>
     <div style="display: flex; gap: 50px;">
-        <p>Current Distance:</p>
-        <p>Object Detected:</p>
+        <p>Current Distance:</p> <span id="Distance"></span>
+        <p>Object Detected:</p> <span id="Object"></span>
       </div>
-    <p>Current Temperature:</p>
-    <p>Current Humidity:</p>
-    <p>Smoke:</p>
-
+      <div style="display: flex; gap: 10px;">
+        <p>Current Temperature:</p> <span id="Temperature"></span>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <p>Current Humidity:</p> <span id="Humidity"></span>
+      </div>      
+      <div style="display: flex; gap: 10px;">
+        <p>Smoke:</p> <span id="Alcohol"></span>
+      </div>
+      
     <button onclick="generateNumber()">BUTTON</button>
 
     <script src="generatenumber.js"></script>
