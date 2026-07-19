@@ -4,7 +4,7 @@ function generateNumber() {
 }
 
 function get() {
-    fetch('pi2026-40785-default-rtdb-export.json')
+    fetch('simple.json')
         .then(response => response.json())
         .then(data => {
             document.getElementById("humidity").textContent = data.dht11.humidity;
