@@ -2,6 +2,7 @@
 <head>
     <title>Random Number Generator</title>
     <link rel="stylesheet" href="design.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -22,6 +23,38 @@
         <p>Current Humidity:</p> <span id="humidity"></span>
     </div>
 
+    <canvas id="sensorChart"></canvas>
+
+
+ <canvas id="myChart"></canvas>
+<div class="graph-container">
+   <script>
+    const labels = ["0 s", "1 s", "2 s", "3 s", "4 s", "5 s"];
+    const readings = [1,1,2,2,5];
+    
+    const ctx = document.getElementById("sensorChart");
+    
+    new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Sensor Value",
+                data: readings,
+                borderWidth: 2,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+    </script>
+  </div>
+  
+ 
+
+    
     <div class="info-box">
         <p>Alcohol:</p> <span id="alcohol"></span>
     </div>
