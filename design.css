@@ -1,5 +1,5 @@
 body {
-    background-color: #FFEAF4; /* Very light pink */
+    background-color: #FFEAF4; /* very light pink */
     font-family: Arial, sans-serif;
     font-size: 35px;
     margin: 40px;
@@ -7,40 +7,42 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
-    align-items: flex-start;
 }
 
-/* Pink boxes around each row of information */
+/* Pink boxes */
 body > div {
-    background-color: #FFB6D5; /* Darker pink */
-    border: 2px solid #d22668;
+    background-color: #FFB6D5; /* darker pink */
+    border: 2px solid #FF8CB8;
     border-radius: 10px;
     padding: 15px;
     width: fit-content;
 }
 
+/* First two boxes stay on the same line */
 body > div:nth-child(1),
 body > div:nth-child(2) {
-    flex: 0 0 auto;
+    display: flex;
+    gap: 10px;
 }
 
-/* Temperature, Humidity and Smoke */
+/* Put the other boxes below */
 body > div:nth-child(3),
 body > div:nth-child(4),
 body > div:nth-child(5) {
-    flex: 0 0 auto;
+    flex-basis: auto;
     width: fit-content;
 }
 
+/* Remove paragraph spacing */
 p {
     margin: 0;
 }
 
 /* Blue button */
 button {
-    background-color: #87CEFA;
+    background-color: #87CEFA; /* light blue */
     color: black;
-    border: 2px solid #4682B4;
+    border: 2px solid #4682B4; /* darker blue border */
     border-radius: 10px;
     padding: 15px 30px;
     font-family: Arial, sans-serif;
