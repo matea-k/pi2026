@@ -1,56 +1,49 @@
-/* Pozadina i generalni stilovi */
 body {
-    background-color: #FFEAF4; /* Veoma svetlo roze */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Standardni fontovi koji se ne preuzimaju */
+    background-color: #FFEAF4;
+    font-family: Arial, sans-serif;
     font-size: 35px;
     margin: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
 }
 
-/* Pretvaramo HTML divove u roze boksove */
+/* svi boxovi */
 body > div {
-    background-color: #FFB6D5; /* Tamnije roze za boks */
-    border: 2px solid #FF8CB8; /* Tamnija ivica */
+    background-color: #FFB6D5;
+    border: 2px solid #FF8CB8;
     border-radius: 10px;
     padding: 15px;
     width: fit-content;
+    margin-bottom: 15px;
+    display: inline-flex;
+    gap: 10px;
 }
 
-/* Pozicioniranje: Prva dva boksa idu jedan pored drugog */
-@media (min-width: 0px) {
-    /* Selektujemo prva dva div-a i stavljamo ih u isti red */
-    body {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(max-content, auto));
-        justify-content: start;
-        gap: 15px;
-    }
-    
-    /* Teramo 3, 4. i 5. boks, kao i dugme i rezultat da idu u novi red i rašire se preko cele kolone */
-    body > div:nth-of-type(n+3),
-    button,
-    #result {
-        grid-column: 1 / -1;
-    }
+/* prva dva u istom redu */
+body > div:nth-child(1),
+body > div:nth-child(2) {
+    display: inline-flex;
+}
+
+/* ostali ispod */
+body > div:nth-child(3),
+body > div:nth-child(4),
+body > div:nth-child(5) {
+    display: block;
 }
 
 p {
     margin: 0;
 }
 
-/* Plavo dugme */
+/* dugme */
 button {
-    background-color: #87CEFA; /* Svetlo plava */
-    color: black; /* Crni tekst */
-    border: 2px solid #4682B4; /* Tamnije plava ivica */
+    background-color: #87CEFA;
+    color: black;
+    border: 2px solid #4682B4;
     border-radius: 10px;
     padding: 15px 30px;
-    font-family: inherit;
+    font-family: Arial, sans-serif;
     font-size: 20px;
     cursor: pointer;
-    width: fit-content;
 }
 
 button:hover {
