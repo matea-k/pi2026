@@ -1,7 +1,39 @@
 
-button {
+body {
+    background-color: #FFEAF4; /* Very light pink */
     font-family: Arial, sans-serif;
-    background-color: blue;
-    color: red;
-    padding: 20px 10px;
+    font-size: 24px;
+    margin: 30px;
+}
+
+/* Pink boxes around each row of information */
+body > div {
+    background-color: #FFB6D5; /* Darker pink */
+    border: 2px solid #FF8CB8;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    width: fit-content;
+}
+
+/* Remove the extra space around the paragraphs */
+p {
+    margin: 0;
+}
+
+/* Blue button */
+button {
+    background-color: #87CEFA; /* Light blue */
+    color: black;
+    border: 2px solid #4682B4; /* Darker blue border */
+    border-radius: 10px;
+    padding: 15px 30px;
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Optional: make the button slightly darker when hovered */
+button:hover {
+    background-color: #6BB9F0;
 }
