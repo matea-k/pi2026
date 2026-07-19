@@ -1,9 +1,6 @@
-
 function generateNumber() {
     let randomNumber = Math.floor(Math.random() * 100) + 1;
     document.getElementById("result").innerHTML = randomNumber;
-    
-    get();
 }
 
 function get() {
@@ -17,4 +14,4 @@ function get() {
             document.getElementById("alcohol").textContent = data["mq3"].alcoholDetected;
         })
         .catch(error => console.error("there is error", error));
-} 
+}
