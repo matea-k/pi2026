@@ -1,0 +1,13 @@
+{
+  "dht11": {
+    "humidity": 50,
+    "temperature": 26.2
+  },
+  "hc-sr04": {
+    "distance": 169.8,
+    "itemDetected": false
+  },
+  "mq3": {
+    "alcoholDetected": false
+  }
+}
