@@ -35,10 +35,10 @@ p {
 }
 
 .graph-container {
-  max-width: 400px;  /* Limits the width */
-  max-height: 300px; /* Limits the height */
-  width: 100%;       /* Makes it responsive up to the max-width */
-}
+    max-width: 400px;  /* Limits the width */
+    max-height: 300px; /* Limits the height */
+    width: 100%;       /* Makes it responsive up to the max-width */
+  }
 
 /* dugme */
 button {
