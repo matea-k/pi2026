@@ -34,6 +34,12 @@ p {
     margin: 0;
 }
 
+.graph-container {
+  max-width: 400px;  /* Limits the width */
+  max-height: 300px; /* Limits the height */
+  width: 100%;       /* Makes it responsive up to the max-width */
+}
+
 /* dugme */
 button {
     background-color: #87CEFA;
@@ -46,13 +52,7 @@ button {
     cursor: pointer;
 }
 
-<style>
-  .graph-container {
-    max-width: 400px;  /* Limits the width */
-    max-height: 300px; /* Limits the height */
-    width: 100%;       /* Makes it responsive up to the max-width */
-  }
-</style>
+
 
 button:hover {
     background-color: #6BB9F0;
