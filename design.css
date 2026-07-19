@@ -1,7 +1,11 @@
 
+body {
+    background-color: pink;
+}
+
 button {
-    font-family: "Comic Sans MS"
+    font-family: "Comic Sans MS";
     background-color: blue;
-    color: red;
+    color: rgb(12, 0, 0);
     padding: 20px 10px;
 }
