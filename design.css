@@ -1,9 +1,13 @@
-
 body {
     background-color: #FFEAF4; /* Very light pink */
     font-family: Arial, sans-serif;
-    font-size: 24px;
-    margin: 30px;
+    font-size: 35px;
+    margin: 40px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: flex-start;
 }
 
 /* Pink boxes around each row of information */
@@ -12,28 +16,39 @@ body > div {
     border: 2px solid #FF8CB8;
     border-radius: 10px;
     padding: 15px;
-    margin-bottom: 15px;
     width: fit-content;
 }
 
-/* Remove the extra space around the paragraphs */
+/* First two boxes stay on the same row */
+body > div:nth-child(1),
+body > div:nth-child(2) {
+    flex: 0 0 auto;
+}
+
+/* Temperature, Humidity and Smoke */
+body > div:nth-child(3),
+body > div:nth-child(4),
+body > div:nth-child(5) {
+    flex: 0 0 auto;
+    width: fit-content;
+}
+
 p {
     margin: 0;
 }
 
 /* Blue button */
 button {
-    background-color: #87CEFA; /* Light blue */
+    background-color: #87CEFA;
     color: black;
-    border: 2px solid #4682B4; /* Darker blue border */
+    border: 2px solid #4682B4;
     border-radius: 10px;
     padding: 15px 30px;
     font-family: Arial, sans-serif;
-    font-size: 24px;
+    font-size: 20px;
     cursor: pointer;
 }
 
-/* Optional: make the button slightly darker when hovered */
 button:hover {
     background-color: #6BB9F0;
 }
