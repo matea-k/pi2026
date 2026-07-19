@@ -1,5 +1,5 @@
 body {
-    background-color: #a28493;
+    background-color: #f4bae8;
     font-family: Arial, sans-serif;
     font-size: 35px;
     margin: 40px;
@@ -7,8 +7,8 @@ body {
 
 /* svi boxovi */
 body > div {
-    background-color: #FFB6D5;
-    border: 2px solid #d1316e;
+    background-color: #e782ac;
+    border: 2px solid #f82375;
     border-radius: 10px;
     padding: 15px;
     width: fit-content;
