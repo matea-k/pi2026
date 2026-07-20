@@ -1,18 +1,19 @@
+/* 📊 GLOBAL VARIABLES FOR REAL-TIME CHARTING 📊 */
 let myChart;
 let timeLabels = ["0 s", "2 s", "4 s", "6 s", "8 s", "10 s"];
 let tempReadings = [0, 0, 0, 0, 0, 0];
 
-// 1. ველოდებით HTML-ის ჩატვირთვას, ვშლით ძველ გრაფიკს და ვქმნით ახალს
+/* 🚀 INITIALIZE APPLICATION & DATA VISUALIZATION 🚀 */
 document.addEventListener("DOMContentLoaded", function () {
     const ctx = document.getElementById("sensorChart");
     
-    // პოულობს და ანადგურებს HTML-ში ხელით ჩაწერილ გრაფიკს, რომ ერორი არ ამოაგდოს
+    // 🧹 Clean up any existing chart instance to prevent duplicate rendering bugs!
     let existingChart = Chart.getChart(ctx); 
     if (existingChart) {
         existingChart.destroy();
     }
     
-    // იქმნება ახალი, ლაივ გრაფიკი
+    // 🎨 Creating the beautifully tailored live analytics line graph
     myChart = new Chart(ctx, {
         type: "line",
         data: {
@@ -31,37 +32,48 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // პირველივე ჩართვაზე ეგრევე იძახებს მონაცემებს
+    // ⚡ Initial trigger to fetch telemetry immediately on page load
     get();
 });
 
-// 2. ასინქრონული ფუნქცია Firebase-დან მონაცემების წამოსაღებად
+/* 🛰️ TELEMETRY FETCH ENGINE (FIREBASE INTERACTION) 🛰️ */
 async function get() {
     try {
+        // 📡 Reaching out to Firebase Realtime Database
         let response = await fetch('https://pi2026-40785-default-rtdb.firebaseio.com/.json');
         let data = await response.json();
         
-        // 🚨 ეს დაგვანახებს კონსოლში, ზუსტად რა ფორმით მოდის მონაცემები პითონიდან
-        console.log("Firebase Data:", data);
+        // 🧪 Visualizing live incoming JSON tree in the developer console
+        console.log("🔥 IoT Stream Connected:", data);
         
         if (data) {
-            // ეს ლოგიკა აზღვევს მონაცემებს: იმუშავებს მაშინაც, თუ სტრუქტურა პირდაპირ მთავარ ბაზაშია და მაშინაც, თუ ცალკე ობიექტებშია (dht11, mq3, ultrasonic)
-            let currentTemp = data.temperature !== undefined ? data.temperature : (data.dht11 ? data.dht11.temperature : 0);
-            let currentHum = data.humidity !== undefined ? data.humidity : (data.dht11 ? data.dht11.humidity : 0);
+            // 🌡️ 1. DHT11 Node: Process Environmental Metrics
+            let currentTemp = data.dht11 ? data.dht11.temperature : 0;
+            let currentHum = data.dht11 ? data.dht11.humidity : 0;
             
-            document.getElementById("temperature").textContent = currentTemp + " °C";
-            document.getElementById("humidity").textContent = currentHum + "%";
+            if(document.getElementById("temperature")) document.getElementById("temperature").textContent = currentTemp + " °C";
+            if(document.getElementById("humidity")) document.getElementById("humidity").textContent = currentHum + "%";
             
-            let isAlcohol = data.alcoholDetected !== undefined ? data.alcoholDetected : (data.mq3 ? data.mq3.alcoholDetected : false);
-            document.getElementById("alcohol").textContent = isAlcohol ? "Yes" : "No";
+            // 🧪 2. MQ3 Node: Checking Alcohol Concentration Levels
+            let isAlcohol = data.mq3 ? data.mq3.alcoholDetected : false;
+            let alcoholText = (isAlcohol === true || isAlcohol === 1 || isAlcohol === "true") ? "Yes" : "No";
+            if(document.getElementById("alcohol")) document.getElementById("alcohol").textContent = alcoholText;
             
-            let currentDist = data.distance !== undefined ? data.distance : (data.ultrasonic ? data.ultrasonic.distance : 0);
-            let isItem = data.itemDetected !== undefined ? data.itemDetected : (data.ultrasonic ? data.ultrasonic.itemDetected : false);
+            // 📏 3. HC-SR04 Node: Computing High-Precision Ultrasonic Distance
+            let currentDist = 0;
+            let isItem = false;
             
-            document.getElementById("distance").textContent = currentDist.toFixed(1) + " cm";
-            document.getElementById("itemDetected").textContent = isItem ? "Yes" : "No";
+            if (data["hc-sr04"]) {
+                currentDist = data["hc-sr04"].distance !== undefined ? data["hc-sr04"].distance : 0;
+                isItem = data["hc-sr04"].itemDetected !== undefined ? data["hc-sr04"].itemDetected : false;
+            }
 
-            // გრაფიკის ლაივ განახლება
+            let itemText = (isItem === true || isItem === 1 || isItem === "true") ? "Yes" : "No";
+
+            if(document.getElementById("distance")) document.getElementById("distance").textContent = Number(currentDist).toFixed(1) + " cm";
+            if(document.getElementById("itemDetected")) document.getElementById("itemDetected").textContent = itemText;
+
+            // 📈 Dynamic update routine for the dashboard graph
             if (myChart) {
                 tempReadings.shift();
                 tempReadings.push(currentTemp);
@@ -69,15 +81,16 @@ async function get() {
             }
         }
     } catch (error) {
-        console.error("Firebase-დან მონაცემების წაკითხვის შეცდომა:", error);
+        // 🚨 Critical exception handler for network interruptions
+        console.error("❌ Telemetry Stream Error:", error);
     }
 }
 
-// 3. რანდომიზატორი ზედა ღილაკისთვის (BUTTON)
+/* 🎲 UTILITY LOGIC: RANDOM COMPONENT ENGINE 🎲 */
 function generateNumber() {
     let randomNumber = Math.floor(Math.random() * 100) + 1;
     document.getElementById("result").innerHTML = "Random: " + randomNumber;
 }
 
-// 4. ავტომატური Live განახლება ყოველ 2 წამში
-setInterval(get, 2000);
+/* ⏱️ ULTRA-FAST REFRESH CYCLE (1.5s FREQUENCY) ⏱️ */
+setInterval(get, 1500);
