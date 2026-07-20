@@ -16,13 +16,12 @@ body > div {
     gap: 10px;
 }
 
-
 body > div:nth-child(1),
 body > div:nth-child(2) {
     display: inline-flex;
 }
 
-/* ostali ispod */
+/* Remaining divs below */
 body > div:nth-child(3),
 body > div:nth-child(4),
 body > div:nth-child(5) {
@@ -33,15 +32,11 @@ p {
     margin: 0;
 }
 
-<<<<<<< HEAD
 .graph-container {
-    max-width: 400px;  /* Limits the width */
-    max-height: 300px; /* Limits the height */
-    width: 100%;       /* Makes it responsive up to the max-width */
-  }
-=======
->>>>>>> ecebf44 (firebase connection ig)
-
+    max-width: 400px;
+    max-height: 300px;
+    width: 100%;
+}
 
 button {
     background-color: #87CEFA;
@@ -53,8 +48,6 @@ button {
     font-size: 20px;
     cursor: pointer;
 }
-
-
 
 button:hover {
     background-color: #6BB9F0;
