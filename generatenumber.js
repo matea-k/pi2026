@@ -2,17 +2,14 @@ let myChart;
 let timeLabels = ["0 s", "2 s", "4 s", "6 s", "8 s", "10 s"];
 let tempReadings = [0, 0, 0, 0, 0, 0];
 
-// 1. ველოდებით HTML-ის ჩატვირთვას, ვშლით ძველ გრაფიკს და ვქმნით ახალს
 document.addEventListener("DOMContentLoaded", function () {
     const ctx = document.getElementById("sensorChart");
-    
-    // პოულობს და ანადგურებს HTML-ში ხელით ჩაწერილ გრაფიკს, რომ ერორი არ ამოაგდოს
+
     let existingChart = Chart.getChart(ctx); 
     if (existingChart) {
         existingChart.destroy();
     }
     
-    // იქმნება ახალი, ლაივ გრაფიკი
     myChart = new Chart(ctx, {
         type: "line",
         data: {
@@ -31,21 +28,17 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // პირველივე ჩართვაზე ეგრევე იძახებს მონაცემებს
     get();
 });
 
-// 2. ასინქრონული ფუნქცია Firebase-დან მონაცემების წამოსაღებად
 async function get() {
     try {
         let response = await fetch('https://pi2026-40785-default-rtdb.firebaseio.com/.json');
         let data = await response.json();
-        
-        // 🚨 ეს დაგვანახებს კონსოლში, ზუსტად რა ფორმით მოდის მონაცემები პითონიდან
+
         console.log("Firebase Data:", data);
         
         if (data) {
-            // ეს ლოგიკა აზღვევს მონაცემებს: იმუშავებს მაშინაც, თუ სტრუქტურა პირდაპირ მთავარ ბაზაშია და მაშინაც, თუ ცალკე ობიექტებშია (dht11, mq3, ultrasonic)
             let currentTemp = data.temperature !== undefined ? data.temperature : (data.dht11 ? data.dht11.temperature : 0);
             let currentHum = data.humidity !== undefined ? data.humidity : (data.dht11 ? data.dht11.humidity : 0);
             
@@ -61,7 +54,6 @@ async function get() {
             document.getElementById("distance").textContent = currentDist.toFixed(1) + " cm";
             document.getElementById("itemDetected").textContent = isItem ? "Yes" : "No";
 
-            // გრაფიკის ლაივ განახლება
             if (myChart) {
                 tempReadings.shift();
                 tempReadings.push(currentTemp);
@@ -69,15 +61,12 @@ async function get() {
             }
         }
     } catch (error) {
-        console.error("Firebase-დან მონაცემების წაკითხვის შეცდომა:", error);
+        console.error("can't read data from Firebase:", error);
     }
 }
 
-// 3. რანდომიზატორი ზედა ღილაკისთვის (BUTTON)
 function generateNumber() {
     let randomNumber = Math.floor(Math.random() * 100) + 1;
     document.getElementById("result").innerHTML = "Random: " + randomNumber;
 }
-
-// 4. ავტომატური Live განახლება ყოველ 2 წამში
 setInterval(get, 2000);
