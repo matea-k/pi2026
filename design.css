@@ -5,7 +5,6 @@ body {
     margin: 40px;
 }
 
-/* svi boxovi */
 body > div {
     background-color: #FFB6D5;
     border: 2px solid #FF8CB8;
@@ -17,7 +16,7 @@ body > div {
     gap: 10px;
 }
 
-/* prva dva u istom redu */
+
 body > div:nth-child(1),
 body > div:nth-child(2) {
     display: inline-flex;
@@ -34,13 +33,16 @@ p {
     margin: 0;
 }
 
+<<<<<<< HEAD
 .graph-container {
     max-width: 400px;  /* Limits the width */
     max-height: 300px; /* Limits the height */
     width: 100%;       /* Makes it responsive up to the max-width */
   }
+=======
+>>>>>>> ecebf44 (firebase connection ig)
 
-/* dugme */
+
 button {
     background-color: #87CEFA;
     color: black;
