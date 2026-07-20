@@ -39,7 +39,7 @@
         data: {
             labels: labels,
             datasets: [{
-                label: "Sensor Value",
+                label: "Temperature",
                 data: readings,
                 borderWidth: 2,
                 tension: 0.3
@@ -66,7 +66,7 @@
     <p id="result"></p>
     <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+import { getDatabase } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAOQjusA55JNAnd2VmXnZ7vMHGPAA2jaCg",
