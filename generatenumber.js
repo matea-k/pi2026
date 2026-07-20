@@ -56,7 +56,7 @@ async function get() {
             
             // 🧪 2. MQ3 Node: Checking Alcohol Concentration Levels
             let isAlcohol = data.mq3 ? data.mq3.alcoholDetected : false;
-            let alcoholText = (isAlcohol === true || isAlcohol === 1 || isAlcohol === "true") ? "Yes" : "No";
+            let alcoholText = (isAlcohol === true || isAlcohol === 1 || isAlcohol === "true") ? "True" : "False";
             if(document.getElementById("alcohol")) document.getElementById("alcohol").textContent = alcoholText;
             
             // 📏 3. HC-SR04 Node: Computing High-Precision Ultrasonic Distance
@@ -68,7 +68,7 @@ async function get() {
                 isItem = data["hc-sr04"].itemDetected !== undefined ? data["hc-sr04"].itemDetected : false;
             }
 
-            let itemText = (isItem === true || isItem === 1 || isItem === "true") ? "Yes" : "No";
+            let itemText = (isItem === true || isItem === 1 || isItem === "true") ? "True" : "False";
 
             if(document.getElementById("distance")) document.getElementById("distance").textContent = Number(currentDist).toFixed(1) + " cm";
             if(document.getElementById("itemDetected")) document.getElementById("itemDetected").textContent = itemText;
